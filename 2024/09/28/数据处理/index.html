@@ -1,0 +1,293 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>python实现数据处理 [ 网站 ]</title>
+  
+<link rel="shortcut icon" href="/favicon/favicon.ico">
+
+<link rel="stylesheet" href="/lib/fancybox/jquery.fancybox.min.css">
+
+
+
+<link rel="stylesheet" href="/lib/fontawesome/css/all.min.css">
+
+
+
+<link rel="stylesheet" id="highlight-link" href="/lib/highlight/style/railscasts.css">
+
+
+
+<link rel="stylesheet" href="/css/milk.css">
+
+
+<link rel="stylesheet" id="shceme-link" href="/css/theme/default.css">
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+  <div class="milk-header">
+     
+
+  <nav class="header-nav">
+     
+    <ul class="nav-menu">
+      
+        <li id="Home">
+          <i class="fas fa-home" aria-hidden="true"></i>
+          <a href="/ ">Home</a>
+        </li>
+      
+        <li id="Archives">
+          <i class="fas fa-archive" aria-hidden="true"></i>
+          <a href="/archives ">Archives</a>
+        </li>
+      
+        <li id="About">
+          <i class="fas fa-user-circle" aria-hidden="true"></i>
+          <a href="/about ">About</a>
+        </li>
+      
+    </ul>
+    
+    
+      <span class="nav-date">
+        <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+        <span id="date"></span>
+      </span>
+    
+    
+    
+      <span class="nav-system" id="nav-system"></span>
+    
+    
+    <span class="nav-access">
+      <i class="fas fa-toggle-off" id="nav-access"></i>
+      <div class="dropdown-content" id="dropdown-content">
+        <ul class="social">
+          
+            <li>
+              <a target="_blank" rel="noopener" href="https://548926560.github.io">
+                <i class="fab fa-github-alt" aria-hidden="true"></i>
+              </a>
+            </li>
+          
+            <li>
+              <a href="mailto:lgq548926560@qq.com">
+                <i class="fas fa-envelope" aria-hidden="true"></i>
+              </a>
+            </li>
+          
+        </ul>
+        <ul>
+          <li><span>Powered by <a target="_blank" rel="noopener" href="https://548926560.github.io">LGQ</a></span></li>
+        </ul>
+        <div>
+          <label for="scheme-select">Color scheme: </label>
+          <select id="scheme-select">
+            <option value='default'>default</option>
+          </select>
+          <label for="highlight-select">Code highlight: </label>
+          <select id="highlight-select">
+            <option value='railscasts'>railscasts</option>
+          </select>
+        </div>
+      </div>
+    </span>
+  </nav>
+ 
+  </div>
+  <div class="milk-body">
+    
+<div class="draggable-toc">
+  <div class="toc-title">python实现数据处理</div>
+  <p>process: <span>0</span></p>
+  <div class="progress-container">
+    <div class="progress-bar" id="bar"></div>
+  </div>
+  <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%BB%E5%8F%96-CSV-%E6%96%87%E4%BB%B6"><span class="toc-text">读取 CSV 文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%99%E5%85%A5-CSV-%E6%96%87%E4%BB%B6"><span class="toc-text">写入 CSV 文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%BB%E5%8F%96-JSON-%E6%96%87%E4%BB%B6"><span class="toc-text">读取 JSON 文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%99%E5%85%A5-JSON-%E6%96%87%E4%BB%B6"><span class="toc-text">写入 JSON 文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%87%E6%BB%A4%E5%88%97%E8%A1%A8%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E9%A1%B9"><span class="toc-text">过滤列表中的重复项</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%92%E5%BA%8F%E5%88%97%E8%A1%A8"><span class="toc-text">排序列表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%8D%E8%BD%AC%E5%88%97%E8%A1%A8"><span class="toc-text">反转列表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%88%E5%B9%B6%E5%A4%9A%E4%B8%AA%E5%88%97%E8%A1%A8"><span class="toc-text">合并多个列表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E5%88%97%E8%A1%A8%E4%B8%AD%E7%9A%84%E6%9C%80%E5%A4%A7%E5%80%BC"><span class="toc-text">获取列表中的最大值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E5%88%97%E8%A1%A8%E4%B8%AD%E7%9A%84%E6%9C%80%E5%B0%8F%E5%80%BC"><span class="toc-text">获取列表中的最小值</span></a></li></ol>
+</div>
+
+<div class="post-content" id="post-content">
+  <div id="top">python实现数据处理</div>
+  <div class="post">
+    
+    <div class="content-categories">
+      
+      <i class="fas fa-location-arrow"></i>
+      <ul>
+        <li>categories</li>
+        
+      </ul>
+    
+    </div>
+    <hr>
+    
+    <h4 id="读取-CSV-文件"><a href="#读取-CSV-文件" class="headerlink" title="读取 CSV 文件"></a>读取 CSV 文件</h4><pre><code>import csv
+with open(&#39;data.csv&#39;, &#39;r&#39;) as file:
+  reader = csv.reader(file)
+  for row in reader:
+    print(row)
+</code></pre>
+<h4 id="写入-CSV-文件"><a href="#写入-CSV-文件" class="headerlink" title="写入 CSV 文件"></a>写入 CSV 文件</h4><pre><code>import csv
+data = [[&#39;Name&#39;, &#39;Age&#39;], [&#39;Alice&#39;, 30], [&#39;Bob&#39;, 25]]
+with open(&#39;data.csv&#39;, &#39;w&#39;, newline=&#39;&#39;) as file:
+  writer = csv.writer(file)
+  writer.writerows(data)
+</code></pre>
+<h4 id="读取-JSON-文件"><a href="#读取-JSON-文件" class="headerlink" title="读取 JSON 文件"></a>读取 JSON 文件</h4><pre><code>import json
+with open(&#39;data.json&#39;, &#39;r&#39;) as file:
+  data = json.load(file)
+</code></pre>
+<h4 id="写入-JSON-文件"><a href="#写入-JSON-文件" class="headerlink" title="写入 JSON 文件"></a>写入 JSON 文件</h4><pre><code>import json
+data = &#123;&#39;name&#39;: &#39;Alice&#39;, &#39;age&#39;: 30&#125;
+with open(&#39;data.json&#39;, &#39;w&#39;) as file:
+  json.dump(data, file)
+</code></pre>
+<h4 id="过滤列表中的重复项"><a href="#过滤列表中的重复项" class="headerlink" title="过滤列表中的重复项"></a>过滤列表中的重复项</h4><pre><code>my_list = [1, 2, 2, 3, 4, 4, 5]
+unique_list = list(set(my_list))
+</code></pre>
+<h4 id="排序列表"><a href="#排序列表" class="headerlink" title="排序列表"></a>排序列表</h4><pre><code>my_list = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5]
+sorted_list = sorted(my_list)
+</code></pre>
+<h4 id="反转列表"><a href="#反转列表" class="headerlink" title="反转列表"></a>反转列表</h4><pre><code>my_list = [1, 2, 3, 4, 5]
+reversed_list = list(reversed(my_list))
+</code></pre>
+<h4 id="合并多个列表"><a href="#合并多个列表" class="headerlink" title="合并多个列表"></a>合并多个列表</h4><pre><code>list1 = [1, 2, 3]
+list2 = [4, 5, 6]
+combined_list = list1 + list2
+</code></pre>
+<h4 id="获取列表中的最大值"><a href="#获取列表中的最大值" class="headerlink" title="获取列表中的最大值"></a>获取列表中的最大值</h4><pre><code>my_list = [1, 2, 3, 4, 5]
+max_value = max(my_list)
+</code></pre>
+<h4 id="获取列表中的最小值"><a href="#获取列表中的最小值" class="headerlink" title="获取列表中的最小值"></a>获取列表中的最小值</h4><pre><code>my_list = [1, 2, 3, 4, 5]
+min_value = min(my_list)
+</code></pre>
+
+    
+    <hr>
+    <div class="content-tags">
+      
+      <i class="fas fa-tags"></i>
+      <ul>
+        
+        <li><a href="/tags/py/">
+          py
+        </a></li>
+      
+      </ul>
+    
+    </div>
+    
+     
+<div class="comment-tabs" id="comment-tabs">
+  comment:
+  <ul>
+    
+      <li><a href="#Valine">Valine</a></li>
+    
+    
+      <li><a href="#LiveRe">LiveRe</a></li>
+    
+    
+      <li><a href="#ChangYan">ChangYan</a></li>
+    
+  </ul>
+  
+  
+    <div id="ChangYan">
+      <!--PC和WAP自适应版-->
+      <div id="SOHUCS" ></div> 
+      <script type="text/javascript"> 
+      (function(){ 
+      var appid = 'cyuGH4lBk'; 
+      var conf = 'ae32d85e4ca99348209aedfd3ae01478'; 
+      var width = window.innerWidth || document.documentElement.clientWidth; 
+      if (width < 960) {
+      var head = document.getElementsByTagName('head')[0]||document.head||document.documentElement;
+      var script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.charset = 'utf-8';
+      script.id = 'changyan_mobile_js';
+      script.src = 'https://cy-cdn.kuaizhan.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf;
+      head.appendChild(script);
+      } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://cy-cdn.kuaizhan.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); 
+      </script>
+    </div>
+   
+  
+  
+    <div id="LiveRe">
+      
+        <!-- LiveRe City install code -->
+        <div id="lv-container" data-id="city" data-uid="MTAyMC80NjA4MS8yMjU5Mg==">
+          <script type="text/javascript">
+            (function(d, s) {
+              var j, e = d.getElementsByTagName(s)[0];
+              if (typeof LivereTower === 'function') { return; }
+              j = d.createElement(s);
+              j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+              j.async = true;
+              e.parentNode.insertBefore(j, e);
+            })(document, 'script');
+          </script>
+          <noscript>Please activate JavaScript for write a comment in LiveRe</noscript>
+          </div>
+          <!-- completed City install code -->
+        
+    </div>
+  
+  
+  
+    <div id="Valine">
+      <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+      <div id="vcomments"></div>
+      <script>
+        new Valine({
+          el: '#vcomments',
+          appId: '5bHFwYPW2iHWCiV7WmNRSenk-gzGzoHsz',
+          appKey: '2q4UgVDTmeJf9Phe8VbnNKyC',
+          avatar: 'monsterid',
+          enableQQ: true
+        })
+      </script>
+    </div>
+   
+</div>
+
+  </div>
+</div>
+ 
+<div>
+  <div
+    id="sprite-container"
+    data-mouse-out-ani='/2top/out_1.png'
+    data-mouse-hover-ani='/2top/hover_1.png,/2top/hover_2.png'
+    data-mouse-click-ani='/2top/click_1.png,/2top/click_2.png,/2top/click_3.png'
+    >
+  </div>
+</div>
+  </div>
+</body>
+
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/jquery/jquery-ui.min.js"></script>
+
+
+<script src="/lib/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+<script src="/lib/highlight/highlight.min.js"></script>
+
+
+
+<script src="/js/milk.js"></script>
+
+
+</html>
