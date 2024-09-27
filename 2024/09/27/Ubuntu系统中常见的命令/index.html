@@ -1,0 +1,253 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ubuntu系统中常见的命令 [ 网站 ]</title>
+  
+<link rel="shortcut icon" href="/favicon/favicon.ico">
+
+<link rel="stylesheet" href="/lib/fancybox/jquery.fancybox.min.css">
+
+
+
+<link rel="stylesheet" href="/lib/fontawesome/css/all.min.css">
+
+
+
+<link rel="stylesheet" id="highlight-link" href="/lib/highlight/style/railscasts.css">
+
+
+
+<link rel="stylesheet" href="/css/milk.css">
+
+
+<link rel="stylesheet" id="shceme-link" href="/css/theme/default.css">
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+  <div class="milk-header">
+     
+
+  <nav class="header-nav">
+     
+    <ul class="nav-menu">
+      
+        <li id="Home">
+          <i class="fas fa-home" aria-hidden="true"></i>
+          <a href="/ ">Home</a>
+        </li>
+      
+        <li id="Archives">
+          <i class="fas fa-archive" aria-hidden="true"></i>
+          <a href="/archives ">Archives</a>
+        </li>
+      
+        <li id="About">
+          <i class="fas fa-user-circle" aria-hidden="true"></i>
+          <a href="/about ">About</a>
+        </li>
+      
+    </ul>
+    
+    
+      <span class="nav-date">
+        <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+        <span id="date"></span>
+      </span>
+    
+    
+    
+      <span class="nav-system" id="nav-system"></span>
+    
+    
+    <span class="nav-access">
+      <i class="fas fa-toggle-off" id="nav-access"></i>
+      <div class="dropdown-content" id="dropdown-content">
+        <ul class="social">
+          
+            <li>
+              <a target="_blank" rel="noopener" href="https://548926560.github.io">
+                <i class="fab fa-github-alt" aria-hidden="true"></i>
+              </a>
+            </li>
+          
+            <li>
+              <a href="mailto:lgq548926560@qq.com">
+                <i class="fas fa-envelope" aria-hidden="true"></i>
+              </a>
+            </li>
+          
+        </ul>
+        <ul>
+          <li><span>Powered by <a target="_blank" rel="noopener" href="https://548926560.github.io">LGQ</a></span></li>
+        </ul>
+        <div>
+          <label for="scheme-select">Color scheme: </label>
+          <select id="scheme-select">
+            <option value='default'>default</option>
+          </select>
+          <label for="highlight-select">Code highlight: </label>
+          <select id="highlight-select">
+            <option value='railscasts'>railscasts</option>
+          </select>
+        </div>
+      </div>
+    </span>
+  </nav>
+ 
+  </div>
+  <div class="milk-body">
+    
+<div class="draggable-toc">
+  <div class="toc-title">Ubuntu系统中常见的命令</div>
+  <p>process: <span>0</span></p>
+  <div class="progress-container">
+    <div class="progress-bar" id="bar"></div>
+  </div>
+  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Ubuntu%E7%B3%BB%E7%BB%9F%E4%B8%AD%E5%B8%B8%E8%A7%81%E7%9A%84%E5%91%BD%E4%BB%A4"><span class="toc-text">Ubuntu系统中常见的命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF"><span class="toc-text">系统信息</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ls-%E5%88%97%E5%87%BA%E7%9B%AE%E5%BD%95%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E5%92%8C%E6%96%87%E4%BB%B6%E5%A4%B9%E3%80%82"><span class="toc-text">ls - 列出目录中的文件和文件夹。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#pwd-%E6%98%BE%E7%A4%BA%E5%BD%93%E5%89%8D%E5%B7%A5%E4%BD%9C%E7%9B%AE%E5%BD%95%E3%80%82"><span class="toc-text">pwd - 显示当前工作目录。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#whoami-%E6%98%BE%E7%A4%BA%E5%BD%93%E5%89%8D%E7%99%BB%E5%BD%95%E7%9A%84%E7%94%A8%E6%88%B7%E5%90%8D%E3%80%82"><span class="toc-text">whoami - 显示当前登录的用户名。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#date-%E6%98%BE%E7%A4%BA%E5%BD%93%E5%89%8D%E6%97%A5%E6%9C%9F%E5%92%8C%E6%97%B6%E9%97%B4%E3%80%82"><span class="toc-text">date - 显示当前日期和时间。</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C"><span class="toc-text">文件操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#cd-%E7%9B%AE%E5%BD%95%E5%90%8D-%E6%9B%B4%E6%94%B9%E5%BD%93%E5%89%8D%E7%9B%AE%E5%BD%95%E3%80%82"><span class="toc-text">cd [目录名] - 更改当前目录。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#cp-%E6%BA%90%E6%96%87%E4%BB%B6-%E7%9B%AE%E5%BD%95-%E7%9B%AE%E6%A0%87%E6%96%87%E4%BB%B6-%E7%9B%AE%E5%BD%95-%E5%A4%8D%E5%88%B6%E6%96%87%E4%BB%B6%E6%88%96%E7%9B%AE%E5%BD%95%E3%80%82"><span class="toc-text">cp [源文件&#x2F;目录] [目标文件&#x2F;目录] - 复制文件或目录。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mv-%E6%BA%90%E6%96%87%E4%BB%B6-%E7%9B%AE%E5%BD%95-%E7%9B%AE%E6%A0%87%E6%96%87%E4%BB%B6-%E7%9B%AE%E5%BD%95-%E7%A7%BB%E5%8A%A8%E6%88%96%E9%87%8D%E5%91%BD%E5%90%8D%E6%96%87%E4%BB%B6%E6%88%96%E7%9B%AE%E5%BD%95%E3%80%82"><span class="toc-text">mv [源文件&#x2F;目录] [目标文件&#x2F;目录] - 移动或重命名文件或目录。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#rm-%E6%96%87%E4%BB%B6-%E7%9B%AE%E5%BD%95-%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6%E6%88%96%E7%9B%AE%E5%BD%95%E3%80%82"><span class="toc-text">rm [文件&#x2F;目录] - 删除文件或目录。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mkdir-%E7%9B%AE%E5%BD%95%E5%90%8D-%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E6%96%B0%E7%9B%AE%E5%BD%95%E3%80%82"><span class="toc-text">mkdir [目录名] - 创建一个新目录。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#rmdir-%E7%9B%AE%E5%BD%95%E5%90%8D-%E5%88%A0%E9%99%A4%E4%B8%80%E4%B8%AA%E7%A9%BA%E7%9B%AE%E5%BD%95%E3%80%82"><span class="toc-text">rmdir [目录名] - 删除一个空目录。</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9%E6%93%8D%E4%BD%9C"><span class="toc-text">文件内容操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#cat-%E6%96%87%E4%BB%B6%E5%90%8D-%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9%E3%80%82"><span class="toc-text">cat [文件名] - 查看文件内容。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#more-%E6%96%87%E4%BB%B6%E5%90%8D-%E5%88%86%E9%A1%B5%E6%98%BE%E7%A4%BA%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9%E3%80%82"><span class="toc-text">more [文件名] - 分页显示文件内容。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#less-%E6%96%87%E4%BB%B6%E5%90%8D-%E7%B1%BB%E4%BC%BCmore%EF%BC%8C%E4%BD%86%E5%85%81%E8%AE%B8%E5%8F%8D%E5%90%91%E5%AF%BC%E8%88%AA%E3%80%82"><span class="toc-text">less [文件名] - 类似more，但允许反向导航。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#tail-%E6%96%87%E4%BB%B6%E5%90%8D-%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E7%9A%84%E6%9C%80%E5%90%8E%E5%87%A0%E8%A1%8C%E3%80%82"><span class="toc-text">tail [文件名] - 查看文件的最后几行。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#head-%E6%96%87%E4%BB%B6%E5%90%8D-%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E7%9A%84%E5%89%8D%E5%87%A0%E8%A1%8C%E3%80%82"><span class="toc-text">head [文件名] - 查看文件的前几行。</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%83%E9%99%90%E5%92%8C%E6%89%80%E6%9C%89%E6%9D%83"><span class="toc-text">权限和所有权</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#chmod-%E6%9D%83%E9%99%90-%E6%96%87%E4%BB%B6-%E7%9B%AE%E5%BD%95-%E6%9B%B4%E6%94%B9%E6%96%87%E4%BB%B6%E6%88%96%E7%9B%AE%E5%BD%95%E7%9A%84%E6%9D%83%E9%99%90%E3%80%82"><span class="toc-text">chmod [权限] [文件&#x2F;目录] - 更改文件或目录的权限。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#chown-%E7%94%A8%E6%88%B7-%E7%BB%84-%E6%96%87%E4%BB%B6-%E7%9B%AE%E5%BD%95-%E6%9B%B4%E6%94%B9%E6%96%87%E4%BB%B6%E6%88%96%E7%9B%AE%E5%BD%95%E7%9A%84%E6%89%80%E6%9C%89%E8%80%85%E5%92%8C%E7%BB%84%E3%80%82"><span class="toc-text">chown [用户:组] [文件&#x2F;目录] - 更改文件或目录的所有者和组。</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E5%8C%85%E7%AE%A1%E7%90%86"><span class="toc-text">软件包管理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#apt-get-update-%E6%9B%B4%E6%96%B0%E5%8F%AF%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%8C%85%E5%88%97%E8%A1%A8%E3%80%82"><span class="toc-text">apt-get update - 更新可用软件包列表。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#apt-get-install-%E8%BD%AF%E4%BB%B6%E5%8C%85%E5%90%8D-%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E5%8C%85%E3%80%82"><span class="toc-text">apt-get install [软件包名] - 安装软件包。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#apt-get-remove-%E8%BD%AF%E4%BB%B6%E5%8C%85%E5%90%8D-%E7%A7%BB%E9%99%A4%E8%BD%AF%E4%BB%B6%E5%8C%85%E3%80%82"><span class="toc-text">apt-get remove [软件包名] - 移除软件包。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#apt-get-upgrade-%E5%8D%87%E7%BA%A7%E6%89%80%E6%9C%89%E5%8F%AF%E5%8D%87%E7%BA%A7%E7%9A%84%E8%BD%AF%E4%BB%B6%E5%8C%85%E3%80%82"><span class="toc-text">apt-get upgrade - 升级所有可升级的软件包。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#apt-get-autoremove-%E8%87%AA%E5%8A%A8%E7%A7%BB%E9%99%A4%E4%B8%8D%E5%86%8D%E9%9C%80%E8%A6%81%E7%9A%84%E8%BD%AF%E4%BB%B6%E5%8C%85%E3%80%82"><span class="toc-text">apt-get autoremove - 自动移除不再需要的软件包。</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86"><span class="toc-text">系统管理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#reboot-%E9%87%8D%E5%90%AF%E7%B3%BB%E7%BB%9F%E3%80%82"><span class="toc-text">reboot - 重启系统。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#shutdown-h-now-%E7%AB%8B%E5%8D%B3%E5%85%B3%E6%9C%BA%E3%80%82"><span class="toc-text">shutdown -h now - 立即关机。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#df-h-%E6%98%BE%E7%A4%BA%E7%A3%81%E7%9B%98%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5%E3%80%82"><span class="toc-text">df -h - 显示磁盘使用情况。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#free-m-%E6%98%BE%E7%A4%BA%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5%E3%80%82"><span class="toc-text">free -m - 显示内存使用情况。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#top-%E6%98%BE%E7%A4%BA%E7%B3%BB%E7%BB%9F%E8%BF%90%E8%A1%8C%E7%9A%84%E8%BF%9B%E7%A8%8B%E3%80%82"><span class="toc-text">top - 显示系统运行的进程。</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86"><span class="toc-text">网络管理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ping-%E7%BD%91%E5%9D%80-%E5%9C%B0%E5%9D%80-%E6%A3%80%E6%9F%A5%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5%E3%80%82"><span class="toc-text">ping [网址&#x2F;地址] - 检查网络连接。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ifconfig-%E6%98%BE%E7%A4%BA%E6%88%96%E9%85%8D%E7%BD%AE%E7%BD%91%E7%BB%9C%E6%8E%A5%E5%8F%A3%E3%80%82"><span class="toc-text">ifconfig - 显示或配置网络接口。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#netstat-%E6%98%BE%E7%A4%BA%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5%E3%80%81%E8%B7%AF%E7%94%B1%E8%A1%A8%E3%80%81%E6%8E%A5%E5%8F%A3%E7%BB%9F%E8%AE%A1%E7%AD%89%E3%80%82"><span class="toc-text">netstat - 显示网络连接、路由表、接口统计等。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#wget-URL-%E4%BB%8E%E7%BD%91%E7%BB%9C%E4%B8%8A%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6%E3%80%82"><span class="toc-text">wget [URL] - 从网络上下载文件。</span></a></li></ol></li></ol></li></ol></li></ol>
+</div>
+
+<div class="post-content" id="post-content">
+  <div id="top">Ubuntu系统中常见的命令</div>
+  <div class="post">
+    
+    <div class="content-categories">
+      
+      <i class="fas fa-location-arrow"></i>
+      <ul>
+        <li>categories</li>
+        
+      </ul>
+    
+    </div>
+    <hr>
+    
+    <h1 id="Ubuntu系统中常见的命令"><a href="#Ubuntu系统中常见的命令" class="headerlink" title="Ubuntu系统中常见的命令"></a>Ubuntu系统中常见的命令</h1><h3 id="系统信息"><a href="#系统信息" class="headerlink" title="系统信息"></a>系统信息</h3><h4 id="ls-列出目录中的文件和文件夹。"><a href="#ls-列出目录中的文件和文件夹。" class="headerlink" title="ls - 列出目录中的文件和文件夹。"></a>ls - 列出目录中的文件和文件夹。</h4><h4 id="pwd-显示当前工作目录。"><a href="#pwd-显示当前工作目录。" class="headerlink" title="pwd - 显示当前工作目录。"></a>pwd - 显示当前工作目录。</h4><h4 id="whoami-显示当前登录的用户名。"><a href="#whoami-显示当前登录的用户名。" class="headerlink" title="whoami - 显示当前登录的用户名。"></a>whoami - 显示当前登录的用户名。</h4><h4 id="date-显示当前日期和时间。"><a href="#date-显示当前日期和时间。" class="headerlink" title="date - 显示当前日期和时间。"></a>date - 显示当前日期和时间。</h4><h3 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h3><h4 id="cd-目录名-更改当前目录。"><a href="#cd-目录名-更改当前目录。" class="headerlink" title="cd [目录名] - 更改当前目录。"></a>cd [目录名] - 更改当前目录。</h4><h4 id="cp-源文件-目录-目标文件-目录-复制文件或目录。"><a href="#cp-源文件-目录-目标文件-目录-复制文件或目录。" class="headerlink" title="cp [源文件&#x2F;目录] [目标文件&#x2F;目录] - 复制文件或目录。"></a>cp [源文件&#x2F;目录] [目标文件&#x2F;目录] - 复制文件或目录。</h4><h4 id="mv-源文件-目录-目标文件-目录-移动或重命名文件或目录。"><a href="#mv-源文件-目录-目标文件-目录-移动或重命名文件或目录。" class="headerlink" title="mv [源文件&#x2F;目录] [目标文件&#x2F;目录] - 移动或重命名文件或目录。"></a>mv [源文件&#x2F;目录] [目标文件&#x2F;目录] - 移动或重命名文件或目录。</h4><h4 id="rm-文件-目录-删除文件或目录。"><a href="#rm-文件-目录-删除文件或目录。" class="headerlink" title="rm [文件&#x2F;目录] - 删除文件或目录。"></a>rm [文件&#x2F;目录] - 删除文件或目录。</h4><h4 id="mkdir-目录名-创建一个新目录。"><a href="#mkdir-目录名-创建一个新目录。" class="headerlink" title="mkdir [目录名] - 创建一个新目录。"></a>mkdir [目录名] - 创建一个新目录。</h4><h4 id="rmdir-目录名-删除一个空目录。"><a href="#rmdir-目录名-删除一个空目录。" class="headerlink" title="rmdir [目录名] - 删除一个空目录。"></a>rmdir [目录名] - 删除一个空目录。</h4><h3 id="文件内容操作"><a href="#文件内容操作" class="headerlink" title="文件内容操作"></a>文件内容操作</h3><h4 id="cat-文件名-查看文件内容。"><a href="#cat-文件名-查看文件内容。" class="headerlink" title="cat [文件名] - 查看文件内容。"></a>cat [文件名] - 查看文件内容。</h4><h4 id="more-文件名-分页显示文件内容。"><a href="#more-文件名-分页显示文件内容。" class="headerlink" title="more [文件名] - 分页显示文件内容。"></a>more [文件名] - 分页显示文件内容。</h4><h4 id="less-文件名-类似more，但允许反向导航。"><a href="#less-文件名-类似more，但允许反向导航。" class="headerlink" title="less [文件名] - 类似more，但允许反向导航。"></a>less [文件名] - 类似more，但允许反向导航。</h4><h4 id="tail-文件名-查看文件的最后几行。"><a href="#tail-文件名-查看文件的最后几行。" class="headerlink" title="tail [文件名] - 查看文件的最后几行。"></a>tail [文件名] - 查看文件的最后几行。</h4><h4 id="head-文件名-查看文件的前几行。"><a href="#head-文件名-查看文件的前几行。" class="headerlink" title="head [文件名] - 查看文件的前几行。"></a>head [文件名] - 查看文件的前几行。</h4><h3 id="权限和所有权"><a href="#权限和所有权" class="headerlink" title="权限和所有权"></a>权限和所有权</h3><h4 id="chmod-权限-文件-目录-更改文件或目录的权限。"><a href="#chmod-权限-文件-目录-更改文件或目录的权限。" class="headerlink" title="chmod [权限] [文件&#x2F;目录] - 更改文件或目录的权限。"></a>chmod [权限] [文件&#x2F;目录] - 更改文件或目录的权限。</h4><h4 id="chown-用户-组-文件-目录-更改文件或目录的所有者和组。"><a href="#chown-用户-组-文件-目录-更改文件或目录的所有者和组。" class="headerlink" title="chown [用户:组] [文件&#x2F;目录] - 更改文件或目录的所有者和组。"></a>chown [用户:组] [文件&#x2F;目录] - 更改文件或目录的所有者和组。</h4><h3 id="软件包管理"><a href="#软件包管理" class="headerlink" title="软件包管理"></a>软件包管理</h3><h4 id="apt-get-update-更新可用软件包列表。"><a href="#apt-get-update-更新可用软件包列表。" class="headerlink" title="apt-get update - 更新可用软件包列表。"></a>apt-get update - 更新可用软件包列表。</h4><h4 id="apt-get-install-软件包名-安装软件包。"><a href="#apt-get-install-软件包名-安装软件包。" class="headerlink" title="apt-get install [软件包名] - 安装软件包。"></a>apt-get install [软件包名] - 安装软件包。</h4><h4 id="apt-get-remove-软件包名-移除软件包。"><a href="#apt-get-remove-软件包名-移除软件包。" class="headerlink" title="apt-get remove [软件包名] - 移除软件包。"></a>apt-get remove [软件包名] - 移除软件包。</h4><h4 id="apt-get-upgrade-升级所有可升级的软件包。"><a href="#apt-get-upgrade-升级所有可升级的软件包。" class="headerlink" title="apt-get upgrade - 升级所有可升级的软件包。"></a>apt-get upgrade - 升级所有可升级的软件包。</h4><h4 id="apt-get-autoremove-自动移除不再需要的软件包。"><a href="#apt-get-autoremove-自动移除不再需要的软件包。" class="headerlink" title="apt-get autoremove - 自动移除不再需要的软件包。"></a>apt-get autoremove - 自动移除不再需要的软件包。</h4><h3 id="系统管理"><a href="#系统管理" class="headerlink" title="系统管理"></a>系统管理</h3><h4 id="reboot-重启系统。"><a href="#reboot-重启系统。" class="headerlink" title="reboot - 重启系统。"></a>reboot - 重启系统。</h4><h4 id="shutdown-h-now-立即关机。"><a href="#shutdown-h-now-立即关机。" class="headerlink" title="shutdown -h now - 立即关机。"></a>shutdown -h now - 立即关机。</h4><h4 id="df-h-显示磁盘使用情况。"><a href="#df-h-显示磁盘使用情况。" class="headerlink" title="df -h - 显示磁盘使用情况。"></a>df -h - 显示磁盘使用情况。</h4><h4 id="free-m-显示内存使用情况。"><a href="#free-m-显示内存使用情况。" class="headerlink" title="free -m - 显示内存使用情况。"></a>free -m - 显示内存使用情况。</h4><h4 id="top-显示系统运行的进程。"><a href="#top-显示系统运行的进程。" class="headerlink" title="top - 显示系统运行的进程。"></a>top - 显示系统运行的进程。</h4><h3 id="网络管理"><a href="#网络管理" class="headerlink" title="网络管理"></a>网络管理</h3><h4 id="ping-网址-地址-检查网络连接。"><a href="#ping-网址-地址-检查网络连接。" class="headerlink" title="ping [网址&#x2F;地址] - 检查网络连接。"></a>ping [网址&#x2F;地址] - 检查网络连接。</h4><h4 id="ifconfig-显示或配置网络接口。"><a href="#ifconfig-显示或配置网络接口。" class="headerlink" title="ifconfig - 显示或配置网络接口。"></a>ifconfig - 显示或配置网络接口。</h4><h4 id="netstat-显示网络连接、路由表、接口统计等。"><a href="#netstat-显示网络连接、路由表、接口统计等。" class="headerlink" title="netstat - 显示网络连接、路由表、接口统计等。"></a>netstat - 显示网络连接、路由表、接口统计等。</h4><h4 id="wget-URL-从网络上下载文件。"><a href="#wget-URL-从网络上下载文件。" class="headerlink" title="wget [URL] - 从网络上下载文件。"></a>wget [URL] - 从网络上下载文件。</h4>
+    
+    <hr>
+    <div class="content-tags">
+      
+      <i class="fas fa-tags"></i>
+      <ul>
+        
+        <li><a href="/tags/Ubuntu/">
+          Ubuntu
+        </a></li>
+      
+      </ul>
+    
+    </div>
+    
+     
+<div class="comment-tabs" id="comment-tabs">
+  comment:
+  <ul>
+    
+      <li><a href="#Valine">Valine</a></li>
+    
+    
+      <li><a href="#LiveRe">LiveRe</a></li>
+    
+    
+      <li><a href="#ChangYan">ChangYan</a></li>
+    
+  </ul>
+  
+  
+    <div id="ChangYan">
+      <!--PC和WAP自适应版-->
+      <div id="SOHUCS" ></div> 
+      <script type="text/javascript"> 
+      (function(){ 
+      var appid = 'cyuGH4lBk'; 
+      var conf = 'ae32d85e4ca99348209aedfd3ae01478'; 
+      var width = window.innerWidth || document.documentElement.clientWidth; 
+      if (width < 960) {
+      var head = document.getElementsByTagName('head')[0]||document.head||document.documentElement;
+      var script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.charset = 'utf-8';
+      script.id = 'changyan_mobile_js';
+      script.src = 'https://cy-cdn.kuaizhan.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf;
+      head.appendChild(script);
+      } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://cy-cdn.kuaizhan.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); 
+      </script>
+    </div>
+   
+  
+  
+    <div id="LiveRe">
+      
+        <!-- LiveRe City install code -->
+        <div id="lv-container" data-id="city" data-uid="MTAyMC80NjA4MS8yMjU5Mg==">
+          <script type="text/javascript">
+            (function(d, s) {
+              var j, e = d.getElementsByTagName(s)[0];
+              if (typeof LivereTower === 'function') { return; }
+              j = d.createElement(s);
+              j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+              j.async = true;
+              e.parentNode.insertBefore(j, e);
+            })(document, 'script');
+          </script>
+          <noscript>Please activate JavaScript for write a comment in LiveRe</noscript>
+          </div>
+          <!-- completed City install code -->
+        
+    </div>
+  
+  
+  
+    <div id="Valine">
+      <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+      <div id="vcomments"></div>
+      <script>
+        new Valine({
+          el: '#vcomments',
+          appId: '5bHFwYPW2iHWCiV7WmNRSenk-gzGzoHsz',
+          appKey: '2q4UgVDTmeJf9Phe8VbnNKyC',
+          avatar: 'monsterid',
+          enableQQ: true
+        })
+      </script>
+    </div>
+   
+</div>
+
+  </div>
+</div>
+ 
+<div>
+  <div
+    id="sprite-container"
+    data-mouse-out-ani='/2top/out_1.png'
+    data-mouse-hover-ani='/2top/hover_1.png,/2top/hover_2.png'
+    data-mouse-click-ani='/2top/click_1.png,/2top/click_2.png,/2top/click_3.png'
+    >
+  </div>
+</div>
+  </div>
+</body>
+
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/jquery/jquery-ui.min.js"></script>
+
+
+<script src="/lib/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+<script src="/lib/highlight/highlight.min.js"></script>
+
+
+
+<script src="/js/milk.js"></script>
+
+
+</html>
