@@ -1,32 +1,257 @@
-extends includes/layout.pug
-
-block content
-  #post
-    if top_img === false
-      include includes/header/post-info.pug
-
-    article#article-container.post-content!=page.content
-    include includes/post/post-copyright.pug
-    .tag_share
-      if (page.tags.length > 0 && theme.post_meta.post.tags)
-        .post-meta__tag-list
-          each item, index in page.tags.data
-            a(href=url_for(item.path)).post-meta__tags #[=item.name]
-      include includes/third-party/share/index.pug
-        
-    if theme.reward.enable && theme.reward.QR_code
-      !=partial('includes/post/reward', {}, {cache: true})
-
-    //- ad
-    if theme.ad && theme.ad.post
-      .ads-wrap!=theme.ad.post
-
-    if theme.post_pagination
-      include includes/pagination.pug
-    if theme.related_post && theme.related_post.enable
-      != related_posts(page,site.posts)
-
-    if page.comments !== false && theme.comments.use
-      - var commentsJsLoad = true
-      !=partial('includes/third-party/comments/index', {}, {cache: true})
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Python的reduce()函数 | Hexo</title><meta name="author" content="lgq"><meta name="copyright" content="lgq"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Python的reduce()函数前言  在 Python 中，reduce() 函数是一个非常有用的工具，用于将序列中的元素通过一个函数累积起来。reduce() 函数属于 functools 模块，而不是内置函数。因此，在使用之前需要先导入 functools 模块。 1. reduce() 函数的基本用法from functools import reduce  reduce(functio">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python的reduce()函数">
+<meta property="og:url" content="https://lgqlht.github.io/2024/09/25/1/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Python的reduce()函数前言  在 Python 中，reduce() 函数是一个非常有用的工具，用于将序列中的元素通过一个函数累积起来。reduce() 函数属于 functools 模块，而不是内置函数。因此，在使用之前需要先导入 functools 模块。 1. reduce() 函数的基本用法from functools import reduce  reduce(functio">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:published_time" content="2024-09-24T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-09-25T01:55:05.572Z">
+<meta property="article:author" content="lgq">
+<meta property="article:tag" content="notes">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://lgqlht.github.io/2024/09/25/1/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Error',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Python的reduce()函数',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-09-25 09:55:05'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
       
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">2</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/%E6%96%87%E7%AB%A0%E5%9B%BE1.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Hexo"><span class="site-name">Hexo</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Python的reduce()函数</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2024-09-24T16:00:00.000Z" title="Created 2024-09-25 00:00:00">2024-09-25</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2024-09-25T01:55:05.572Z" title="Updated 2024-09-25 09:55:05">2024-09-25</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Python的reduce()函数"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Python的reduce-函数"><a href="#Python的reduce-函数" class="headerlink" title="Python的reduce()函数"></a>Python的reduce()函数</h1><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>  在 Python 中，reduce() 函数是一个非常有用的工具，用于将序列中的元素通过一个函数累积起来。reduce() 函数属于 functools 模块，而不是内置函数。因此，在使用之前需要先导入 functools 模块。</p>
+<h2 id="1-reduce-函数的基本用法"><a href="#1-reduce-函数的基本用法" class="headerlink" title="1. reduce() 函数的基本用法"></a>1. reduce() 函数的基本用法</h2><pre><code>from functools import reduce
+
+reduce(function, iterable[, initializer])
+</code></pre>
+<p>  其中：</p>
+<p>function 是一个二元函数，即接收两个参数。</p>
+<p>iterable 是一个可迭代对象（如列表、元组等）。</p>
+<p>initializer 是一个可选参数，用于初始化累积的结果。‍</p>
+<h2 id="2-示例：使用-reduce-计算列表元素的和"><a href="#2-示例：使用-reduce-计算列表元素的和" class="headerlink" title="2. 示例：使用 reduce() 计算列表元素的和"></a>2. 示例：使用 reduce() 计算列表元素的和</h2><p>  假设我们有一个整数列表，需要计算所有元素的总和。</p>
+<h3 id="2-1-示例代码"><a href="#2-1-示例代码" class="headerlink" title="2.1 示例代码"></a>2.1 示例代码</h3><pre><code>  from functools import reduce
+  def add(x, y):
+    return x + y
+  numbers = [1, 2, 3, 4, 5]
+  result = reduce(add, numbers)
+  print(result)
+</code></pre>
+<p>输出：15</p>
+<h2 id="3-示例：使用-reduce-计算字符串的长度"><a href="#3-示例：使用-reduce-计算字符串的长度" class="headerlink" title="3. 示例：使用 reduce() 计算字符串的长度"></a>3. 示例：使用 reduce() 计算字符串的长度</h2><p>假设我们有一个字符串列表，需要计算所有字符串的长度之和。</p>
+<h3 id="3-1-示例代码"><a href="#3-1-示例代码" class="headerlink" title="3.1 示例代码"></a>3.1 示例代码</h3><pre><code>from functools import reduce
+def add_length(x, y):
+  return x + len(y)
+strings = [&quot;hello&quot;, &quot;world&quot;, &quot;python&quot;]
+result = reduce(add_length, strings, 0)
+print(result) 
+</code></pre>
+<p>输出：18</p>
+<h2 id="4-示例：使用-reduce-计算最大公约数"><a href="#4-示例：使用-reduce-计算最大公约数" class="headerlink" title="4. 示例：使用 reduce() 计算最大公约数"></a>4. 示例：使用 reduce() 计算最大公约数</h2><p>假设我们有一个整数列表，需要计算所有元素的最大公约数。</p>
+<h3 id="4-1-示例代码"><a href="#4-1-示例代码" class="headerlink" title="4.1 示例代码"></a>4.1 示例代码</h3><pre><code>from functools import reduce
+import math
+def gcd(x, y):
+  return math.gcd(x, y)
+numbers = [12, 24, 36, 48]
+result = reduce(gcd, numbers)
+print(result)
+</code></pre>
+<p>输出：12</p>
+<h2 id="5-示例：使用-reduce-计算乘积"><a href="#5-示例：使用-reduce-计算乘积" class="headerlink" title="5. 示例：使用 reduce() 计算乘积"></a>5. 示例：使用 reduce() 计算乘积</h2><p>假设我们有一个整数列表，需要计算所有元素的乘积。</p>
+<h3 id="5-1-示例代码"><a href="#5-1-示例代码" class="headerlink" title="5.1 示例代码"></a>5.1 示例代码</h3><pre><code>from functools import reduce
+def multiply(x, y):
+  return x * y
+numbers = [1, 2, 3, 4, 5]
+result = reduce(multiply, numbers)
+print(result)
+</code></pre>
+<p> 输出：120</p>
+<h2 id="6-示例：使用-reduce-计算字符串连接"><a href="#6-示例：使用-reduce-计算字符串连接" class="headerlink" title="6. 示例：使用 reduce() 计算字符串连接"></a>6. 示例：使用 reduce() 计算字符串连接</h2><p>假设我们有一个字符串列表，需要将所有字符串连接成一个字符串。</p>
+<h3 id="6-1-示例代码"><a href="#6-1-示例代码" class="headerlink" title="6.1 示例代码"></a>6.1 示例代码</h3><pre><code>from functools import reduce
+def concatenate_strings(x, y):
+  return x + y
+strings = [&quot;hello&quot;, &quot; &quot;, &quot;world&quot;, &quot; &quot;, &quot;python&quot;]
+result = reduce(concatenate_strings, strings)
+print(result)
+</code></pre>
+<p>输出：’hello world python’</p>
+<h2 id="7-示例：使用-reduce-计算累加和"><a href="#7-示例：使用-reduce-计算累加和" class="headerlink" title="7. 示例：使用 reduce() 计算累加和"></a>7. 示例：使用 reduce() 计算累加和</h2><p>假设我们有一个整数列表，需要计算累加和。</p>
+<h3 id="7-1-示例代码"><a href="#7-1-示例代码" class="headerlink" title="7.1 示例代码"></a>7.1 示例代码</h3><pre><code>from functools import reduce
+def accumulate_sum(x, y):
+ return x + y
+numbers = [1, 2, 3, 4, 5]
+result = reduce(accumulate_sum, numbers, 0)
+print(result)
+</code></pre>
+<p>输出：15</p>
+<h2 id="8-示例：使用-reduce-计算最大值"><a href="#8-示例：使用-reduce-计算最大值" class="headerlink" title="8. 示例：使用 reduce() 计算最大值"></a>8. 示例：使用 reduce() 计算最大值</h2><p>假设我们有一个整数列表，需要计算最大值。</p>
+<h3 id="8-1-示例代码"><a href="#8-1-示例代码" class="headerlink" title="8.1 示例代码"></a>8.1 示例代码</h3><pre><code>from functools import reduce
+def max_value(x, y):
+  return x if x &gt; y else y
+numbers = [1, 2, 3, 4, 5]
+result = reduce(max_value, numbers)
+print(result)  
+</code></pre>
+<p>输出：5</p>
+<h2 id="9-示例：使用-reduce-计算最小值"><a href="#9-示例：使用-reduce-计算最小值" class="headerlink" title="9. 示例：使用 reduce() 计算最小值"></a>9. 示例：使用 reduce() 计算最小值</h2><p>假设我们有一个整数列表，需要计算最小值。</p>
+<h3 id="9-1-示例代码"><a href="#9-1-示例代码" class="headerlink" title="9.1 示例代码"></a>9.1 示例代码</h3><pre><code>from functools import reduce
+def min_value(x, y):
+  return x if x &lt; y else y
+numbers = [1, 2, 3, 4, 5]
+result = reduce(min_value, numbers)
+print(result)  
+</code></pre>
+<p>输出：1</p>
+<h2 id="10-示例：使用-reduce-计算字符串的最长长度"><a href="#10-示例：使用-reduce-计算字符串的最长长度" class="headerlink" title="10. 示例：使用 reduce() 计算字符串的最长长度"></a>10. 示例：使用 reduce() 计算字符串的最长长度</h2><p>假设我们有一个字符串列表，需要计算最长字符串的长度。</p>
+<h3 id="10-1-示例代码"><a href="#10-1-示例代码" class="headerlink" title="10.1 示例代码"></a>10.1 示例代码</h3><pre><code>from functools import reduce
+def max_length(x, y):
+  return max(len(x), len(y))
+strings = [&quot;hello&quot;, &quot;world&quot;, &quot;python&quot;]
+result = reduce(max_length, strings)
+print(result)  
+</code></pre>
+<p>输出：6</p>
+<h2 id="11-总结"><a href="#11-总结" class="headerlink" title="11. 总结"></a>11. 总结</h2><p>通过以上示例，我们详细介绍了 reduce() 函数的基本用法，并给出了具体的示例代码：</p>
+<p>计算列表元素的和：使用 reduce() 计算整数列表的和。</p>
+<p>计算字符串的长度之和：使用 reduce() 计算字符串列表的长度之和。</p>
+<p>计算最大公约数：使用 reduce() 计算整数列表的最大公约数。</p>
+<p>计算乘积：使用 reduce() 计算整数列表的乘积。</p>
+<p>连接字符串：使用 reduce() 将字符串列表连接成一个字符串。</p>
+<p>计算累加和：使用 reduce() 计算累加和。</p>
+<p>计算最大值：使用 reduce() 计算整数列表的最大值。</p>
+<p>计算最小值：使用 reduce() 计算整数列表的最小值。</p>
+<p>计算字符串的最长长度：使用 reduce() 计算字符串列表中最长字符串的长度。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://lgqlht.github.io">lgq</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://lgqlht.github.io/2024/09/25/1/">https://lgqlht.github.io/2024/09/25/1/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/notes/">notes</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/2024/09/25/hello-world/" title="Hello World"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Previous</div><div class="prev_info">Hello World</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">lgq</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">2</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Python%E7%9A%84reduce-%E5%87%BD%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text">Python的reduce()函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.0.1.</span> <span class="toc-text">前言</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-reduce-%E5%87%BD%E6%95%B0%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95"><span class="toc-number">1.1.</span> <span class="toc-text">1. reduce() 函数的基本用法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E7%A4%BA%E4%BE%8B%EF%BC%9A%E4%BD%BF%E7%94%A8-reduce-%E8%AE%A1%E7%AE%97%E5%88%97%E8%A1%A8%E5%85%83%E7%B4%A0%E7%9A%84%E5%92%8C"><span class="toc-number">1.2.</span> <span class="toc-text">2. 示例：使用 reduce() 计算列表元素的和</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81"><span class="toc-number">1.2.1.</span> <span class="toc-text">2.1 示例代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E7%A4%BA%E4%BE%8B%EF%BC%9A%E4%BD%BF%E7%94%A8-reduce-%E8%AE%A1%E7%AE%97%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E9%95%BF%E5%BA%A6"><span class="toc-number">1.3.</span> <span class="toc-text">3. 示例：使用 reduce() 计算字符串的长度</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81"><span class="toc-number">1.3.1.</span> <span class="toc-text">3.1 示例代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E7%A4%BA%E4%BE%8B%EF%BC%9A%E4%BD%BF%E7%94%A8-reduce-%E8%AE%A1%E7%AE%97%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0"><span class="toc-number">1.4.</span> <span class="toc-text">4. 示例：使用 reduce() 计算最大公约数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81"><span class="toc-number">1.4.1.</span> <span class="toc-text">4.1 示例代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E7%A4%BA%E4%BE%8B%EF%BC%9A%E4%BD%BF%E7%94%A8-reduce-%E8%AE%A1%E7%AE%97%E4%B9%98%E7%A7%AF"><span class="toc-number">1.5.</span> <span class="toc-text">5. 示例：使用 reduce() 计算乘积</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81"><span class="toc-number">1.5.1.</span> <span class="toc-text">5.1 示例代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E7%A4%BA%E4%BE%8B%EF%BC%9A%E4%BD%BF%E7%94%A8-reduce-%E8%AE%A1%E7%AE%97%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BF%9E%E6%8E%A5"><span class="toc-number">1.6.</span> <span class="toc-text">6. 示例：使用 reduce() 计算字符串连接</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81"><span class="toc-number">1.6.1.</span> <span class="toc-text">6.1 示例代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E7%A4%BA%E4%BE%8B%EF%BC%9A%E4%BD%BF%E7%94%A8-reduce-%E8%AE%A1%E7%AE%97%E7%B4%AF%E5%8A%A0%E5%92%8C"><span class="toc-number">1.7.</span> <span class="toc-text">7. 示例：使用 reduce() 计算累加和</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-1-%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81"><span class="toc-number">1.7.1.</span> <span class="toc-text">7.1 示例代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E7%A4%BA%E4%BE%8B%EF%BC%9A%E4%BD%BF%E7%94%A8-reduce-%E8%AE%A1%E7%AE%97%E6%9C%80%E5%A4%A7%E5%80%BC"><span class="toc-number">1.8.</span> <span class="toc-text">8. 示例：使用 reduce() 计算最大值</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#8-1-%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81"><span class="toc-number">1.8.1.</span> <span class="toc-text">8.1 示例代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-%E7%A4%BA%E4%BE%8B%EF%BC%9A%E4%BD%BF%E7%94%A8-reduce-%E8%AE%A1%E7%AE%97%E6%9C%80%E5%B0%8F%E5%80%BC"><span class="toc-number">1.9.</span> <span class="toc-text">9. 示例：使用 reduce() 计算最小值</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#9-1-%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81"><span class="toc-number">1.9.1.</span> <span class="toc-text">9.1 示例代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-%E7%A4%BA%E4%BE%8B%EF%BC%9A%E4%BD%BF%E7%94%A8-reduce-%E8%AE%A1%E7%AE%97%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%9C%80%E9%95%BF%E9%95%BF%E5%BA%A6"><span class="toc-number">1.10.</span> <span class="toc-text">10. 示例：使用 reduce() 计算字符串的最长长度</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#10-1-%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81"><span class="toc-number">1.10.1.</span> <span class="toc-text">10.1 示例代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-%E6%80%BB%E7%BB%93"><span class="toc-number">1.11.</span> <span class="toc-text">11. 总结</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><div class="content"><a class="title" href="/2024/09/25/hello-world/" title="Hello World">Hello World</a><time datetime="2024-09-25T13:55:42.117Z" title="Created 2024-09-25 21:55:42">2024-09-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/09/25/1/" title="Python的reduce()函数"><div style="background: 文章图1.jpg"></div></a><div class="content"><a class="title" href="/2024/09/25/1/" title="Python的reduce()函数">Python的reduce()函数</a><time datetime="2024-09-24T16:00:00.000Z" title="Created 2024-09-25 00:00:00">2024-09-25</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By lgq</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
