@@ -128,14 +128,14 @@
     <h4 id="Ctrl-Alt-T打开终端"><a href="#Ctrl-Alt-T打开终端" class="headerlink" title="Ctrl+Alt+T打开终端"></a><code>Ctrl+Alt+T</code>打开终端</h4><h4 id="创建ROS工作空间"><a href="#创建ROS工作空间" class="headerlink" title="创建ROS工作空间"></a>创建ROS工作空间</h4><p>i.在用户的家目录下创建一个名为 catkin_ws1 的工作空间，并在其中创建一个名为 src 的子目录，用于存放 ROS 的源代码包。(可自己更改)</p>
 <pre><code>mkdir -p ~/catkin_ws1/src
 </code></pre>
-<p>ii.切换到catkin_ws 工作空间内的 src 目录</p>
-<pre><code>cd ~/catkin_ws/src
+<p>ii.切换到catkin_ws1 工作空间内的 src 目录</p>
+<pre><code>cd ~/catkin_ws1/src
 </code></pre>
 <p>iii.初始化一个新的 catkin 工作空间(前提一定要在“工作空间”下的“src 目录”)</p>
 <pre><code>catkin_init_workspace
 </code></pre>
-<h4 id="编译工作空间"><a href="#编译工作空间" class="headerlink" title="编译工作空间"></a>编译工作空间</h4><p>iv.切换到catkin_ws 工作空间</p>
-<pre><code>cd ~/catkin_ws/
+<h4 id="编译工作空间"><a href="#编译工作空间" class="headerlink" title="编译工作空间"></a>编译工作空间</h4><p>iv.切换到catkin_ws1 工作空间</p>
+<pre><code>cd ~/catkin_ws1/
 </code></pre>
 <p>v.编译(前提一定要在“工作空间”下)</p>
 <pre><code>catkin_make
@@ -147,10 +147,10 @@
 <p>vii.重新执行 ~&#x2F;.bashrc 文件中的所有命令</p>
 <pre><code>source ~/.bashrc
 </code></pre>
-<h4 id="创建ros功能包"><a href="#创建ros功能包" class="headerlink" title="创建ros功能包"></a>创建ros功能包</h4><p>viii.切换到catkin_ws 工作空间内的 src 目录</p>
-<pre><code>cd ~/catkin_ws/src
+<h4 id="创建ros功能包"><a href="#创建ros功能包" class="headerlink" title="创建ros功能包"></a>创建ros功能包</h4><p>viii.切换到catkin_ws1 工作空间内的 src 目录</p>
+<pre><code>cd ~/catkin_ws1/src
 </code></pre>
-<p>ix.创建新的 ROS 包</p>
+<p>ix.创建新的 ROS 包(<code>xhgpfk</code>为包名，可以自己更改)</p>
 <p><code>catkin_create_pkg</code>用于创建新的 ROS 包的命令行工具</p>
 <pre><code>catkin_create_pkg xhgpfk roscpp geometry_msgs
 </code></pre>
@@ -198,14 +198,14 @@ int main(int argc, char** argv)
   return 0;
 &#125;
 </code></pre>
-<p>xiii.在下面找到CMakeLists.txt，在最后面（第207行开始）添加代码进行编译（你的c++是什么名字就改为什么名字<code>xhgfk.cpp.cpp</code>）,(<code>luguoqin</code>这个可以改一个随便的)</p>
-<pre><code>add_executable(luguoqin src/xhgfk.cpp.cpp)
+<p>xiii.在下面找到CMakeLists.txt，在最后面（第207行开始）添加代码进行编译（你的c++是什么名字就改为什么名字<code>xhgfk.cpp</code>）,(<code>luguoqin</code>这个可以改一个随便的)</p>
+<pre><code>add_executable(luguoqin src/xhgfk.cpp)
 add_dependencies(luguoqin $&#123;$&#123;PROJECT_NAME&#125;_EXPORTED_TARGETS&#125;
 $&#123;catkin_EXPORTED_TARGETS&#125;)
 target_link_libraries(luguoqin $&#123;catkin_LIBRARIES&#125;)
 </code></pre>
-<p>xiv.切换到 <code>catkin_ws</code> 工作空间</p>
-<pre><code>cd ~/catkin_ws/
+<p>xiv.切换到 <code>catkin_ws1</code> 工作空间</p>
+<pre><code>cd ~/catkin_ws1/
 </code></pre>
 <p>xv.在创建或修改了 ROS 包后，需要使用 catkin_make 来编译这些更改</p>
 <pre><code>catkin_make
@@ -214,14 +214,11 @@ target_link_libraries(luguoqin $&#123;catkin_LIBRARIES&#125;)
 <p>xvii.用于启动 ROS 的节点</p>
 <pre><code>roscore
 </code></pre>
-<p>xviii.</p>
+<p>xiii.用于运行 ROS 节点</p>
 <pre><code>rosrun turtlesim turtlesim_node
 </code></pre>
-<p>xix.用于运行 ROS 节点</p>
-<pre><code>rosrun turtlesim turtlesim_node
-</code></pre>
-<p>xx.运行小海龟跑方框的指令</p>
-<pre><code>rosrun xhgpfk xhgfk
+<p>xix.运行小海龟跑方框的指令</p>
+<pre><code>rosrun xhgpfk luguoqin
 </code></pre>
 
     
