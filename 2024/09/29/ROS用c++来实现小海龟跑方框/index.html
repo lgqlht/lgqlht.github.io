@@ -128,34 +128,46 @@
     <h4 id="Ctrl-Alt-T打开终端"><a href="#Ctrl-Alt-T打开终端" class="headerlink" title="Ctrl+Alt+T打开终端"></a><code>Ctrl+Alt+T</code>打开终端</h4><h4 id="创建ROS工作空间"><a href="#创建ROS工作空间" class="headerlink" title="创建ROS工作空间"></a>创建ROS工作空间</h4><p>i.在用户的家目录下创建一个名为 catkin_ws1 的工作空间，并在其中创建一个名为 src 的子目录，用于存放 ROS 的源代码包。(可自己更改)</p>
 <pre><code>mkdir -p ~/catkin_ws1/src
 </code></pre>
+<p><img src="/img/ROSA2.jpg" alt="创建ROS工作空间" title="ROSA2 图片"></p>
 <p>ii.切换到catkin_ws1 工作空间内的 src 目录</p>
 <pre><code>cd ~/catkin_ws1/src
 </code></pre>
+<p><img src="/img/ROSA3.jpg" alt="创建ROS工作空间" title="ROSA3 图片"></p>
 <p>iii.初始化一个新的 catkin 工作空间(前提一定要在“工作空间”下的“src 目录”)</p>
 <pre><code>catkin_init_workspace
 </code></pre>
+<p><img src="/img/ROSA4.png" alt="创建ROS工作空间" title="ROSA4 图片"></p>
 <h4 id="编译工作空间"><a href="#编译工作空间" class="headerlink" title="编译工作空间"></a>编译工作空间</h4><p>iv.切换到catkin_ws1 工作空间</p>
 <pre><code>cd ~/catkin_ws1/
 </code></pre>
+<p><img src="/img/ROSA5.jpg" alt="编译工作空间" title="ROSA5 图片"></p>
 <p>v.编译(前提一定要在“工作空间”下)</p>
 <pre><code>catkin_make
 </code></pre>
-<p>可以看到出现build、devel、src，3个文件夹</p>
+<p><img src="/img/ROSA6.jpg" alt="编译工作空间" title="ROSA6 图片"><br>可以看到出现build、devel、src，3个文件夹</p>
+<p><img src="/img/ROSA10.png" alt="编译工作空间" title="ROSA10 图片"></p>
 <h4 id="把工作空间添加到ros环境变量"><a href="#把工作空间添加到ros环境变量" class="headerlink" title="把工作空间添加到ros环境变量"></a>把工作空间添加到ros环境变量</h4><p>vi.使 ROS 工作空间的环境变量在每次打开新的终端时自动设置(里面的catkin_ws1要换成自己的“工作空间”)</p>
 <pre><code>echo &quot;source ~/catkin_ws1/devel/setup.bash&quot; &gt;&gt; ~/.bashrc
 </code></pre>
+<p><img src="/img/ROSA7.jpg" alt="把工作空间添加到ros环境变量" title="ROSA7 图片"></p>
 <p>vii.重新执行 ~&#x2F;.bashrc 文件中的所有命令</p>
 <pre><code>source ~/.bashrc
 </code></pre>
+<p><img src="/img/ROSA8.jpg" alt="把工作空间添加到ros环境变量" title="ROSA8 图片"></p>
 <h4 id="创建ros功能包"><a href="#创建ros功能包" class="headerlink" title="创建ros功能包"></a>创建ros功能包</h4><p>viii.切换到catkin_ws1 工作空间内的 src 目录</p>
 <pre><code>cd ~/catkin_ws1/src
 </code></pre>
+<p><img src="/img/ROSA9.jpg" alt="创建ros功能包" title="ROSA9 图片"></p>
 <p>ix.创建新的 ROS 包(<code>xhgpfk</code>为包名，可以自己更改)</p>
 <p><code>catkin_create_pkg</code>用于创建新的 ROS 包的命令行工具</p>
 <pre><code>catkin_create_pkg xhgpfk roscpp geometry_msgs
 </code></pre>
+<p><img src="/img/ROSA11.jpg" alt="创建ros功能包" title="ROSA11 图片"></p>
 <p>x.打开VSC(Visual Studio Code)点击File（文件）点击Open Folder(打开文件夹)选择“编译空间”的文件</p>
+<p><img src="/img/ROSA12.jpg" alt="创建ros功能包" title="ROSA12 图片"></p>
 <p>xi.点击“编译空间”的文件的<code>src</code>看到ROS功能包的<code>src</code>鼠标右键单击创建一个c++文件，例如：xhgfk.cpp</p>
+<p><img src="/img/ROSA14.jpg" alt="创建ros功能包" title="ROSA14 图片"></p>
+<p><img src="/img/ROSA15.jpg" alt="创建ros功能包" title="ROSA15 图片"></p>
 <p>xii.小海龟的方框代码如下：</p>
 <pre><code>#include &lt;ros/ros.h&gt;
 #include &lt;geometry_msgs/Twist.h&gt;
@@ -207,19 +219,24 @@ target_link_libraries(luguoqin $&#123;catkin_LIBRARIES&#125;)
 <p>xiv.切换到 <code>catkin_ws1</code> 工作空间</p>
 <pre><code>cd ~/catkin_ws1/
 </code></pre>
+<p><img src="/img/ROSA5.jpg" alt="创建ROS功能包" title="ROSA5 图片"></p>
 <p>xv.在创建或修改了 ROS 包后，需要使用 catkin_make 来编译这些更改</p>
 <pre><code>catkin_make
 </code></pre>
+<p><img src="/img/ROSA16.png" alt="创建ROS工作空间" title="ROSA16 图片"><br><img src="/img/ROSA17.png" alt="创建ROS工作空间" title="ROSA17 图片"></p>
 <p>xvi.<code>Ctrl+Alt+T</code>打开终端</p>
 <p>xvii.用于启动 ROS 的节点</p>
 <pre><code>roscore
 </code></pre>
+<p><img src="/img/ROSA22.png" alt="创建ROS工作空间" title="ROSA22 图片"></p>
 <p>xiii.用于运行 ROS 节点</p>
 <pre><code>rosrun turtlesim turtlesim_node
 </code></pre>
+<p><img src="/img/ROSA20.png" alt="创建ROS工作空间" title="ROSA20 图片"></p>
 <p>xix.运行小海龟跑方框的指令</p>
 <pre><code>rosrun xhgpfk luguoqin
 </code></pre>
+<p><img src="/img/ROSA21.png" alt="创建ROS工作空间" title="ROSA21 图片"></p>
 
     
     <hr>
