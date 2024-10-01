@@ -196,15 +196,13 @@ int main(int argc, char** argv)
       vel_cmd.angular.y = 0.0;
       vel_cmd.angular.z = 0.0;
 
-      if(count == 5)
+      while(count == 5)
       &#123;
-        vel_cmd.angular.z = 3.1415926; // Change angular velocity when count reaches 5
         count = 0; // Reset count
+        vel_cmd.angular.z = 3.1415926; // Change angular velocity when count reaches 5
+        
       &#125;
-      else
-      &#123;
-        count++; // Increment count
-      &#125;
+      
 
       vel_pub.publish(vel_cmd);
       ros::spinOnce();
