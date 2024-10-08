@@ -169,44 +169,65 @@
 <p><img src="/img/ROSA11.jpg" alt="创建ros功能包" title="ROSA11 图片"></p>
 <p>x.打开VSC(Visual Studio Code)点击File（文件）点击Open Folder(打开文件夹)选择“编译空间”的文件</p>
 <p><img src="/img/ROSA12.jpg" alt="创建ros功能包" title="ROSA12 图片"></p>
-<p>xi.点击“编译空间”的文件的<code>src</code>看到ROS功能包的<code>src</code>鼠标右键单击创建一个c++文件，例如：xhgfk.cpp</p>
+<p>xi.点击“编译空间”的文件的src看到ROS功能包的src鼠标右键单击创建一个c++文件，例如：xhgfk.cpp</p>
 <p><img src="/img/ROSA14.jpg" alt="创建ros功能包" title="ROSA14 图片"></p>
 <p><img src="/img/ROSA15.jpg" alt="创建ros功能包" title="ROSA15 图片"></p>
+<p><img src="/img/ROSA24.jpg" alt="创建ros功能包" title="ROSA15 图片"></p>
 <p>xii.小海龟的方框代码如下：</p>
 <pre><code>#include &lt;ros/ros.h&gt;
 #include &lt;geometry_msgs/Twist.h&gt;
-
 int main(int argc, char** argv)
 &#123;
+  // 初始化 ROS 节点
   ros::init(argc, argv, &quot;turtle_vel_ctrl_node&quot;);
+
+  // 创建节点句柄
   ros::NodeHandle n;
 
+  // 创建一个发布者，发布名为 &quot;/turtle1/cmd_vel&quot; 的 topic，缓冲区大小为 20
   ros::Publisher vel_pub = n.advertise&lt;geometry_msgs::Twist&gt;(&quot;/turtle1/cmd_vel&quot;, 20);
+
+  // 设置循环频率为 2Hz
   ros::Rate loop_rate(2);
 
   int count = 0;
 
-  while(ros::ok())
+  while (ros::ok())
   &#123;
+      // 创建一个 Twist 消息
       geometry_msgs::Twist vel_cmd;
+    
+      // 设置线速度
       vel_cmd.linear.x = 1.0;
       vel_cmd.linear.y = 0.0;
       vel_cmd.linear.z = 0.0;
+    
+      // 设置角速度
       vel_cmd.angular.x = 0.0;
       vel_cmd.angular.y = 0.0;
       vel_cmd.angular.z = 0.0;
-
-      while(count == 5)
-      &#123;
-        count = 0; // Reset count
-        vel_cmd.angular.z = 3.1415926; // Change angular velocity when count reaches 5
-        
-      &#125;
-      
-
+    
+      // 发布消息
       vel_pub.publish(vel_cmd);
+    
+      // 处理回调函数
       ros::spinOnce();
+    
+      // 按照设定的频率休眠
       loop_rate.sleep();
+    
+      // 计数器增加
+      count++;
+    
+      // 当计数器达到 5 时，改变角速度并重置计数器
+      if (count == 5)
+      &#123;
+        vel_cmd.angular.z = 3.1415926; // 180 度对应的弧度
+        vel_pub.publish(vel_cmd); // 发布改变后的速度命令
+        
+        // 重置计数器
+        count = 0;
+      &#125;
   &#125;
 
   return 0;
